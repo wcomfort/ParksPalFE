@@ -6,6 +6,7 @@ import Welcome from './Welcome.js'
 import Login from '../components/Login'
 import Create from '../components/Create'
 import ParkDisplay from '../components/ParkDisplay';
+import MyAccount from '../components/MyAccount';
 
 class App extends React.Component {
  
@@ -14,6 +15,7 @@ class App extends React.Component {
     this.state={
       parks: [],
       searchTerm: "",
+      name: "",
       username: "",
       password: "",
       user: null
@@ -35,14 +37,13 @@ class App extends React.Component {
   }
 
     
-  collectLogin = (event) => {
+  collectInfo = (event) => {
     this.setState({
       [event.target.name]: event.target.value
     })
   } 
 
   login = (event) => {
-    console.log('logging in')
     event.preventDefault()
     let username = this.state.username
     let password = this.state.password.toString()
@@ -68,6 +69,38 @@ class App extends React.Component {
           }
         })
       }
+
+  createAccount = (event) => {
+    event.preventDefault()
+    console.log('creating account')
+    let name= this.state.name
+    let username = this.state.username
+    let password = this.state.password.toString()
+    console.log(username, password)
+    fetch("http://localhost:3000/create_account", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify({name: name, username: username, password: password})
+    })
+    .then(res => res.json())
+      .then(userObj => {
+        this.setState({
+          user: userObj
+        })
+      })
+  }
+
+  displayPark = (event) => {
+    let parkId = parseInt(event.currentTarget.id)
+    console.log(parkId)
+    this.setState({
+      parkId: parkId,
+      searchTerm: ""
+    })
+  }
 
   filterParks = (parks) => { 
    if (parks.length > 0){
@@ -102,12 +135,16 @@ class App extends React.Component {
         <Route exact path="/login" render={() => {
           return this.state.user ?( <Redirect to='/parks'/>
             ) : (
-              <Login username={this.state.username} password={this.state.password} login={this.login} collect={this.collectLogin}/>
+              <Login username={this.state.username} password={this.state.password} login={this.login} collect={this.collectInfo}/>
             )
+        }}/>
+        
+        <Route exact path="/my_account" render={() => {
+          return <MyAccount user={this.state.user}/>
         }}/>
 
         <Route exact path="/create_account" render={() => {
-          return <Create/>
+          return this.state.user ? ( <Redirect to='/parks'/>) : <Create name={this.state.name} username={this.state.username} password={this.state.password} create={this.createAccount} collect={this.collectInfo}/>
         }}/>
 
         <Route exact path="/parks" render={() => {

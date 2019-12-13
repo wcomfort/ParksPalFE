@@ -1,6 +1,5 @@
 import React from 'react'
 import ParkCard from '../components/ParkCard'
-import ParkDisplay from '../components/ParkDisplay'
 
 class Parks extends React.Component {
     render(){
