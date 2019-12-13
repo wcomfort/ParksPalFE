@@ -30,6 +30,7 @@ class App extends React.Component {
 
   displayPark = (event) => {
     let parkId = parseInt(event.currentTarget.id)
+    console.log(parkId)
     this.setState({
       parkId: parkId
     })
@@ -42,7 +43,7 @@ class App extends React.Component {
   }
 
   render(){
-    let parks = this.state.parks.filter(park => park.name.toLowerCase().includes(this.state.searchTerm.toLowerCase()))
+    let parks = this.state.parks.filter(park => park.name.toLowerCase().includes(this.state.searchTerm.toLowerCase()) || park.state.toLowerCase().includes(this.state.searchTerm.toLowerCase()))
     return (
       <Router>
          <div className="App"> 
@@ -51,7 +52,8 @@ class App extends React.Component {
           return  <Main search ={this.search} searchTerm={this.state.searchTerm} parks={parks} display={this.displayPark}/>
         }}/>
         <Route exact path="/park/:id" render={(props) => {
-            let park =  this.state.parks.find(park => park.id === parseInt(props.match.params.id))   
+          console.log(props)
+            let park =  this.state.parks.find(park => park.id === this.state.parkId)   
           return <ParkDisplay park={park}/>
         }}/>
         </Switch> 
