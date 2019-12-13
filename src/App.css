@@ -42,6 +42,11 @@
   font-family: 'Roboto Mono', monospace;
 }
 
+.welcomelogo {
+  width: 200px;
+  height:400px;
+}
+
 .logo {
   width: 20px;
   height:40px;
