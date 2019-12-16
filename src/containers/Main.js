@@ -7,7 +7,7 @@ let Main = (props) => {
     return (
         <div>
             <div>
-                <NavBar logout={props.logout} search={props.search} searchTerm={props.searchTerm}/>
+                <NavBar logout={props.logout} search={props.search} searchTerm={props.searchTerm} filterFaves={props.filterFaves}/>
             </div>
            <div>
                 <Parks parks={props.parks} display={props.display} favorite={props.favorite}/>

@@ -148,8 +148,21 @@ class App extends React.Component {
   }
 
   favorite = (event) => {
-    // let parkId = parseInt(event.currentTarget.parentElement.id)
-    // let userID = this.state.user.id
+    let parkId = parseInt(event.currentTarget.parentElement.id)
+    let userId = this.state.user.id
+    fetch("http://localhost:3000/favorites", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify({user_id: userId, park_id: parkId})
+    })
+    alert('Added to Favorites!')
+  }
+
+  filterFavorites = () => {
+    console.log('getting your favs')
   }
 
   render(){
@@ -183,7 +196,7 @@ class App extends React.Component {
         }}/>
 
         <Route exact path="/parks" render={() => {
-          return  <Main logout={this.logout} search ={this.search} searchTerm={this.state.searchTerm} parks={this.filterParks(this.state.parks)} display={this.displayPark} favorite={this.favorite}/>
+          return  <Main logout={this.logout} search ={this.search} searchTerm={this.state.searchTerm} parks={this.filterParks(this.state.parks)} display={this.displayPark} favorite={this.favorite} filterFaves={this.filterFavorites}/>
         }}/>
 
         <Route exact path="/park/:id" render={(props) => {  
