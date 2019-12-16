@@ -23,6 +23,23 @@ class App extends React.Component {
   }
 
   componentDidMount(){
+    let user = parseInt(localStorage.getItem('user'))
+    if (user){
+    fetch(`http://localhost:3000/users/${user}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify({id: user})
+    })
+    .then(res => res.json())
+    .then(user => {
+      this.setState({
+        user: user
+      })
+    })
+    }
     this.getParks()
   }
  
@@ -47,7 +64,6 @@ class App extends React.Component {
     event.preventDefault()
     let username = this.state.username
     let password = this.state.password.toString()
-    console.log(username, password)
     fetch("http://localhost:3000/login", {
       method: "POST",
       headers: {
@@ -59,6 +75,7 @@ class App extends React.Component {
     .then(res => res.json())
       .then(userObj => {
         if(userObj){
+          localStorage.setItem('user', userObj.id)
           this.setState({
             user: userObj,
             username: userObj.username,
@@ -87,34 +104,52 @@ class App extends React.Component {
     })
     .then(res => res.json())
       .then(userObj => {
-        this.setState({
-          user: userObj
-        })
+        if(userObj.id){
+          localStorage.setItem('user', userObj.id)
+          this.setState({
+            user: userObj
+          })
+        }else{
+          console.log(userObj)
+          alert(`Username ${userObj.username[0]}`)
+        }
       })
+  }
+
+  logout = () => {
+    this.setState({
+      user: null,
+      name: "",
+      username: ""
+    })
+    localStorage.clear()
   }
 
   displayPark = (event) => {
     let parkId = parseInt(event.currentTarget.id)
-    console.log(parkId)
     this.setState({
-      parkId: parkId,
       searchTerm: ""
     })
+    localStorage.setItem('park', parkId)
   }
 
   filterParks = (parks) => { 
    if (parks.length > 0){
      return parks.filter(park => park.name.toLowerCase().includes(this.state.searchTerm.toLowerCase()) || park.state.toLowerCase().includes(this.state.searchTerm.toLowerCase()))
   }else{
-    return null
+    return parks
   }
   }
   
-
   search = (event) => {
     this.setState({
       searchTerm:  event.target.value
     })
+  }
+
+  favorite = (event) => {
+    // let parkId = parseInt(event.currentTarget.parentElement.id)
+    // let userID = this.state.user.id
   }
 
   render(){
@@ -148,13 +183,11 @@ class App extends React.Component {
         }}/>
 
         <Route exact path="/parks" render={() => {
-          return  <Main search ={this.search} searchTerm={this.state.searchTerm} parks={this.filterParks(this.state.parks)} display={this.displayPark}/>
+          return  <Main logout={this.logout} search ={this.search} searchTerm={this.state.searchTerm} parks={this.filterParks(this.state.parks)} display={this.displayPark} favorite={this.favorite}/>
         }}/>
 
-        <Route exact path="/park/:id" render={(props) => {
-          console.log(props)
-            let park =  this.state.parks.find(park => park.id === this.state.parkId)   
-          return <ParkDisplay park={park}/>
+        <Route exact path="/park/:id" render={(props) => {  
+          return <ParkDisplay {...props}/>
         }}/>
 
         </Switch> 

@@ -13,6 +13,9 @@ let NavBar = (props) => {
             </Link>
              <button>My Favorites</button>
              <input type='text' placeholder='Search by Name or State' value={props.searchTerm} onChange={props.search}/>
+             <Link to='/welcome'>
+             <button onClick={props.logout}>Logout</button>
+             </Link>
         </div> 
     )
 }
