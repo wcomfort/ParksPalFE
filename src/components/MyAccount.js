@@ -8,7 +8,6 @@ let MyAccount = (props) => {
             <NavBar/>
             <div>
             <h1>Welcome {props.user.username}!</h1>
-            <h3>My Favorites:</h3>
             <h3>My Comments</h3>
             </div>
         </div>

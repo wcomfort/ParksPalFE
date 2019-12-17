@@ -136,8 +136,8 @@ class App extends React.Component {
   filterParks = (parks) => { 
    if (parks.length > 0){
      return parks.filter(park => park.name.toLowerCase().includes(this.state.searchTerm.toLowerCase()) || park.state.toLowerCase().includes(this.state.searchTerm.toLowerCase()))
-  }else{
-    return parks
+   }else{
+      return parks
   }
   }
   
@@ -145,24 +145,6 @@ class App extends React.Component {
     this.setState({
       searchTerm:  event.target.value
     })
-  }
-
-  favorite = (event) => {
-    let parkId = parseInt(event.currentTarget.parentElement.id)
-    let userId = this.state.user.id
-    fetch("http://localhost:3000/favorites", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json"
-      },
-      body: JSON.stringify({user_id: userId, park_id: parkId})
-    })
-    alert('Added to Favorites!')
-  }
-
-  filterFavorites = () => {
-    console.log('getting your favs')
   }
 
   render(){
@@ -196,7 +178,7 @@ class App extends React.Component {
         }}/>
 
         <Route exact path="/parks" render={() => {
-          return  <Main logout={this.logout} search ={this.search} searchTerm={this.state.searchTerm} parks={this.filterParks(this.state.parks)} display={this.displayPark} favorite={this.favorite} filterFaves={this.filterFavorites}/>
+          return  <Main logout={this.logout} search ={this.search} searchTerm={this.state.searchTerm} parks={this.filterParks(this.state.parks)} display={this.displayPark} user={this.state.user}/>
         }}/>
 
         <Route exact path="/park/:id" render={(props) => {  

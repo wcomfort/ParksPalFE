@@ -1,16 +1,26 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 
-let ParkCard = (props) => {
-    return (
-            <div class='card' onClick={props.display} id={props.park.id}>
-            <Link to={`/park/${props.park.id}`} className="parkName">
-            <img class='img' src={props.park.image}></img>
+class ParkCard extends React.Component{
+
+    constructor(){
+        super()
+        this.state={
+            favorite: false
+        }
+    }
+
+    render(){
+        return (
+            <div class='card' onClick={this.props.display} id={this.props.park.id}>
+            <Link to={`/park/${this.props.park.id}`} className="parkName">
+            <img class='img' src={this.props.park.image}></img>
             </Link>
-            <h2>{props.park.name}</h2>
-            <button onClick={props.favorite}>Favorite</button>
+            <h2>{this.props.park.name}</h2>
+            <button onClick={this.props.favorite}>Favorite</button>
             </div>  
     )
+    }    
 }
 
 export default ParkCard
