@@ -22,29 +22,7 @@ class Main extends React.Component {
        }
     }
 
-    favorite = (event) => {
-        let parkId = parseInt(event.currentTarget.parentElement.id)
-        let userId = this.props.user.id
-        fetch("http://localhost:3000/favorites", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json"
-          },
-          body: JSON.stringify({user_id: userId, park_id: parkId})
-        })
-        .then(res => res.json())
-        .then(res => {
-          if (res.id === null){
-            alert("Already a Favorite!")
-          }else{
-            alert('Added to Favorites!')
-          }
-        })
-      }
-
       getFavorites = () => {
-        console.log('getting your favs')
         fetch('http://localhost:3000/favorites')
         .then(res => res.json())
         .then(favs => {
@@ -69,7 +47,7 @@ class Main extends React.Component {
                     <NavBar logout={this.props.logout} search={this.props.search} searchTerm={this.props.searchTerm} filterFaves={this.getFavorites} faves={this.state.faves} parks={this.allParks}/>
                 </div>
                <div>
-                    <Parks parks={this.filterParks()} display={this.props.display} favorite={this.favorite}/>
+                    <Parks parks={this.filterParks()} display={this.props.display} favorite={this.favorite} user={this.props.user}/>
                </div>
             </div>
         )
