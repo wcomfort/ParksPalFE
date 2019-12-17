@@ -8,8 +8,9 @@ class ParkDisplay extends React.Component {
         super (props)
         this.state={
             loading: true,
-            results: [],
-            park: false
+            businesses: [],
+            park: false,
+            comments: []
         }
     }
 
@@ -23,7 +24,15 @@ class ParkDisplay extends React.Component {
           this.setState({
             park: park
           }, () => this.getBusiness())
-        })      
+        })    
+        
+        fetch(`http://localhost:3000/comments`)
+        .then(res => res.json())
+        .then(comments => {
+          this.setState({
+            comments: comments
+          })
+        }) 
     }
 
     getBusiness = () => {
@@ -40,15 +49,24 @@ class ParkDisplay extends React.Component {
         .then(res => res.json())
         .then(bus => {
             this.setState({
-            results: bus,
+            businesses: bus,
             loading: false 
             })
         })
     }
 
    render(){
+
+        let parkId = this.state.park.id
+        let parkCom = this.state.comments.filter(comment => comment.park_id === parkId)
+        let comment = parkCom.map(comment => 
+            <div>
+                <p>{comment.content} - {comment.user.username}</p>
+            </div>
+            )
+
         let food
-        if (this.state.loading === false && this.state.results.length === 0){
+        if (this.state.loading === false && this.state.businesses.length === 0){
             food = <div>
                     <h2>Uh-Oh, You're Really Out There! Better Pack Some of These:</h2>
                     <a href="https://www.mountainhouse.com/m/category/entrees.html" target="_blank">Mountain House Meals</a><br></br>
@@ -56,7 +74,7 @@ class ParkDisplay extends React.Component {
                     </div>
                    
         }else{
-            food = this.state.results.map(bus => 
+            food = this.state.businesses.map(bus => 
                 <div>
                     <a href={bus.url} target="_blank">{bus.name}</a>
                     <p>Address: {bus.location.address1} {bus.location.city}, {bus.location.state}</p>
@@ -65,16 +83,24 @@ class ParkDisplay extends React.Component {
                 </div>
             ) 
         }
+
     return (
         <div>
             <div>
-            <NavBar/>
+                <NavBar/>
             </div>
             <div className='display'>
-            <a href={this.state.park.url} target="_blank"><h1>{this.state.park.name}</h1></a>
-            <h3>{this.state.park.state}</h3>
-            <p className='description'>{this.state.park.description}</p>
-            {food}
+                <a href={this.state.park.url} target="_blank"><h1>{this.state.park.name}</h1></a>
+                <h3>{this.state.park.state}</h3>
+                <p className='description'>{this.state.park.description}</p>
+                <h4>Best Restaurants:</h4>
+                {food}
+                <h4>Comments:</h4>
+                <form>
+                    <input type='text' placeholder='Enter Comment'></input>
+                    <input type='submit' value='Add Comment'></input>
+                </form>
+                {comment}
             </div>
         </div>
     )

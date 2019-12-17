@@ -41,7 +41,6 @@ class ParkCard extends React.Component{
       }
 
     deleteFavorite = (event) => {
-        console.log('deleting')
         let parkId = parseInt(event.target.parentElement.id)
         fetch('http://localhost:3000/favorites', {
             method: 'DELETE',
@@ -54,14 +53,13 @@ class ParkCard extends React.Component{
                 this.setState({
                 userFavorites: update
                 })
+                alert("Favorite Deleted!")
             })
     }
 
     button = (state) => {
         let favIds = state.userFavorites.map(fav => fav.park_id)
-        console.log(favIds)
         let parkId = this.props.park.id
-        console.log(parkId)
         let button 
         if (favIds.includes(parkId))
         return button = <button onClick={this.deleteFavorite}>Delete Favorite</button>
