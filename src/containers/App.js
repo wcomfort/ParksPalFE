@@ -18,7 +18,7 @@ class App extends React.Component {
       name: "",
       username: "",
       password: "",
-      user: null
+      user: {}
     }
   }
 
@@ -109,9 +109,6 @@ class App extends React.Component {
           this.setState({
             user: userObj
           })
-        }else{
-          console.log(userObj)
-          alert(`Username ${userObj.username[0]}`)
         }
       })
   }
@@ -182,7 +179,7 @@ class App extends React.Component {
         }}/>
 
         <Route exact path="/park/:id" render={(props) => {  
-          return <ParkDisplay {...props}/>
+          return <ParkDisplay user={this.state.user} {...props}/>
         }}/>
 
         </Switch> 

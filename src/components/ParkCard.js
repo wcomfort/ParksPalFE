@@ -75,7 +75,7 @@ class ParkCard extends React.Component{
             <img class='img' src={this.props.park.image}></img>
             </Link>
             <h2>{this.props.park.name}</h2>
-            {this.button(this.state)}
+            {/* {this.button(this.state)} */}
             </div>  
     )
     }    

@@ -10,7 +10,8 @@ class ParkDisplay extends React.Component {
             loading: true,
             businesses: [],
             park: false,
-            comments: []
+            comments: [],
+            comment: ""
         }
     }
 
@@ -24,15 +25,8 @@ class ParkDisplay extends React.Component {
           this.setState({
             park: park
           }, () => this.getBusiness())
-        })    
-        
-        fetch(`http://localhost:3000/comments`)
-        .then(res => res.json())
-        .then(comments => {
-          this.setState({
-            comments: comments
-          })
-        }) 
+        })   
+        this.getComments()
     }
 
     getBusiness = () => {
@@ -53,6 +47,41 @@ class ParkDisplay extends React.Component {
             loading: false 
             })
         })
+    }
+
+    getComments = () => {
+      fetch(`http://localhost:3000/comments`)
+      .then(res => res.json())
+      .then(comments => {
+        this.setState({
+          comments: comments
+        })
+      }) 
+    }
+
+    writeComment = (event) => {
+        this.setState({
+            comment: event.currentTarget.value
+        })
+    }
+
+    createComment = (event) => {
+        event.preventDefault()
+        let parkId = this.state.park.id
+        let userId = this.props.user.id
+        let content = this.state.comment
+        fetch("http://localhost:3000/comments", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json"
+          },
+          body: JSON.stringify({content: content ,park_id: parkId, user_id: userId})
+        })
+        this.setState({
+            comment: ""
+        })
+        this.getComments()
     }
 
    render(){
@@ -96,8 +125,8 @@ class ParkDisplay extends React.Component {
                 <h4>Best Restaurants:</h4>
                 {food}
                 <h4>Comments:</h4>
-                <form>
-                    <input type='text' placeholder='Enter Comment'></input>
+                <form onSubmit={this.createComment}>
+                    <input type='text' placeholder='Enter Comment' onChange={this.writeComment} value={this.state.comment} required></input>
                     <input type='submit' value='Add Comment'></input>
                 </form>
                 {comment}
