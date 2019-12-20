@@ -11,20 +11,22 @@ class NavBar extends React.Component {
     render(){
         let button 
         if (this.props.faves === false)
-        button =  <button onClick={this.props.filterFaves}>My Favorites</button>
+        button =  <button onClick={this.props.filterFaves} className='ui button'>My Favorites</button>
         else
-        button = <button onClick={this.props.parks}>All Parks</button>
+        button = <button onClick={this.props.parks} className='ui button'>All Parks</button>
 
         return (
             <div>
-                <Link to='/parks' class='parkName'>
+                <Link to='/parks' className='link'>
                 <h1 className='logotext'>ParksPal<img src='http://cdn.onlinewebfonts.com/svg/img_498917.png' className='logo'></img></h1>
                 </Link>
-                 {button}
-                 <input type='text' placeholder='Search by Name or State' value={this.props.searchTerm} onChange={this.props.search}/>
+                <div className='middle aligned'>
+                {button}
+                 <input type='text' placeholder='Search by Name or State' value={this.props.searchTerm} onChange={this.props.search} className='ui category search'/>
                  <Link to='/welcome'>
-                 <button onClick={this.props.logout}>Logout</button>
+                 <button onClick={this.props.logout} className='ui button'>Logout</button>
                  </Link>
+                </div>
             </div> 
         )
     }

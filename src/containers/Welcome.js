@@ -7,10 +7,10 @@ let Welcome = () => {
             <h1>Welcome to ParksPal</h1>
             <img src='http://cdn.onlinewebfonts.com/svg/img_498917.png' className='welcomelogo'></img><br></br>
             <Link to='/login'>
-                <button>Login</button>
+                <button className='ui button'>Login</button>
             </Link>
             <Link to='/create_account'>
-                <button>Create Account</button>
+                <button className='ui button'>Create Account</button>
             </Link>
         </div>
     )

@@ -22,7 +22,7 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: rgb(85, 10, 10);
 }
 
 .App-link {
@@ -36,6 +36,7 @@
   display: flex;
   overflow-x: auto
 }
+
 .logotext {
   text-align: left;
   font-size: 48pt;
@@ -58,6 +59,7 @@
 
 .display {
   text-align: center;
+  background-color: #a2dbb1;
 }
 
 .card {
@@ -68,13 +70,13 @@
   text-decoration: none;
 }
 
-.parkName {
+.link {
   color: black;
   text-decoration: none;
 }
 
 .description {
-  text-align: center;
+  display: inline-block;
   width: 750px;
 }
 

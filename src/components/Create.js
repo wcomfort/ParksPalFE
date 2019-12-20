@@ -10,7 +10,7 @@ let Create = (props) => {
             <input type='text' name='name' placeholder='Name' onChange={props.collect} required></input><br></br>
             <input type='text' name='username' placeholder='Username' onChange={props.collect} required></input><br></br>
             <input type='password' name='password' placeholder='Password' onChange={props.collect} required></input><br></br>
-            <input type='submit' value='Create Account'></input>
+            <input type='submit' value='Create Account' className='ui button'></input>
             </form>
         </div>
     )

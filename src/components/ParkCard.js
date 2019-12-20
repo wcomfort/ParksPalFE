@@ -64,9 +64,9 @@ class ParkCard extends React.Component{
           let favIds = this.state.userFavorites.map(fav => fav.park_id)
           let parkId = this.props.park.id
           if (favIds.includes(parkId)) 
-            return <button onClick={this.deleteFavorite}>Delete Favorite</button>
+            return <button onClick={this.deleteFavorite} className='ui button'>Delete Favorite</button>
           else
-            return <button onClick={this.addFavorite}>Favorite</button>
+            return <button onClick={this.addFavorite} className='ui button'>Favorite</button>
   
     }
     

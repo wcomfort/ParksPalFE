@@ -104,14 +104,14 @@ class ParkDisplay extends React.Component {
         if (this.state.loading === false && this.state.businesses.length === 0){
             food = <div>
                     <h2>Uh-Oh, You're Really Out There! Better Pack Some of These:</h2>
-                    <a href="https://www.mountainhouse.com/m/category/entrees.html" target="_blank">Mountain House Meals</a><br></br>
+                    <a href="https://www.mountainhouse.com/m/category/entrees.html" target="_blank" className='link'><h3>Mountain House Meals</h3></a><br></br>
                     <iframe src="https://giphy.com/embed/xT0xewLy70uaFY3Vte" width="480" height="247" frameBorder="0" class='gif' allowFullScreen></iframe>
                     </div>
                    
         }else{
             food = this.state.businesses.map(bus => 
                 <div>
-                    <a href={bus.url} target="_blank">{bus.name}</a>
+                    <a href={bus.url} target="_blank" className='link'>{bus.name}</a>
                     <p>Address: {bus.location.address1} {bus.location.city}, {bus.location.state}</p>
                     <p>Phone: {bus.display_phone}</p>
                     <p>Rating: {bus.rating}</p>
@@ -125,15 +125,18 @@ class ParkDisplay extends React.Component {
                 <NavBar/>
             </div>
             <div className='display'>
-                <a href={this.state.park.url} target="_blank"><h1>{this.state.park.name}</h1></a>
+                <a href={this.state.park.url} target="_blank" className='link'><h1>{this.state.park.name}</h1></a>
                 <h3>{this.state.park.state}</h3>
                 <p className='description'>{this.state.park.description}</p>
-                <h4>Best Restaurants:</h4>
+                <div>
+                <h2>Best Restaurants:</h2>
+                <h4>Dropdown here</h4>
+                </div>
                 {food}
                 <h4>Comments:</h4>
                 <form onSubmit={this.createComment}>
-                    <input type='text' placeholder='Enter Comment' onChange={this.writeComment} value={this.state.comment} required></input>
-                    <input type='submit' value='Add Comment'></input>
+                    <input type='text' placeholder='Enter Comment' onChange={this.writeComment} value={this.state.comment} required className='ui category search'></input>
+                    <input type='submit' value='Add Comment' className='ui button'></input>
                 </form>
                 {this.renderComment(this.state)}
             </div>
