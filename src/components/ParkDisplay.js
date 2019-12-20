@@ -2,6 +2,12 @@ import React from 'react'
 import NavBar from './NavBar'
 import { render } from '@testing-library/react'
 
+const tableStyle={
+    width: '70vw',
+    marginLeft: '15vw',
+    marginRight: '15vw'
+}
+
 class ParkDisplay extends React.Component {
 
     constructor(props){
@@ -91,9 +97,8 @@ class ParkDisplay extends React.Component {
         let parkId = state.park.id
         let parkCom = state.comments.filter(comment => comment.park_id === parkId)
         return parkCom.map(com => 
-            // console.log(com.user.username)
             <div>
-                <p>{com.content} - {com.user.username}</p>
+                <p className='comment'>{com.content} - {com.user.username}</p>
             </div>
             )
     }
@@ -109,15 +114,28 @@ class ParkDisplay extends React.Component {
                     </div>
                    
         }else{
-            food = this.state.businesses.map(bus => 
-                <div>
-                    <a href={bus.url} target="_blank" className='link'>{bus.name}</a>
-                    <p>Address: {bus.location.address1} {bus.location.city}, {bus.location.state}</p>
-                    <p>Phone: {bus.display_phone}</p>
-                    <p>Rating: {bus.rating}</p>
-                </div>
-            ) 
+            food =
+            <table style={tableStyle} class="ui celled table">
+            <thead>
+            <tr><th>Name</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th>Rating</th>
+            </tr></thead>
+            <tbody>
+            {this.state.businesses.map(bus => 
+            <tr>
+                <td data-label="Name"> <a href={bus.url} target="_blank" className='link'>{bus.name}</a></td>
+                <td data-label="Address"><p>{bus.location.address1} {bus.location.city}, {bus.location.state}</p></td>
+                <td data-label="Phone">{bus.display_phone}</td>
+                <td data-label='Rating'>{bus.rating}</td>
+            </tr>
+            ) }
+            </tbody>
+            </table>
         }
+
+
 
     return (
         <div>
@@ -133,12 +151,14 @@ class ParkDisplay extends React.Component {
                 <h4>Dropdown here</h4>
                 </div>
                 {food}
+                <div  className='commcontainer'>
                 <h4>Comments:</h4>
                 <form onSubmit={this.createComment}>
                     <input type='text' placeholder='Enter Comment' onChange={this.writeComment} value={this.state.comment} required className='ui category search'></input>
                     <input type='submit' value='Add Comment' className='ui button'></input>
                 </form>
                 {this.renderComment(this.state)}
+                </div>
             </div>
         </div>
     )
