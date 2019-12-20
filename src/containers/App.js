@@ -6,7 +6,6 @@ import Welcome from './Welcome.js'
 import Login from '../components/Login'
 import Create from '../components/Create'
 import ParkDisplay from '../components/ParkDisplay';
-import MyAccount from '../components/MyAccount';
 
 class App extends React.Component {
  
@@ -164,10 +163,6 @@ class App extends React.Component {
             ) : (
               <Login username={this.state.username} password={this.state.password} login={this.login} collect={this.collectInfo}/>
             )
-        }}/>
-        
-        <Route exact path="/my_account" render={() => {
-          return <MyAccount user={this.state.user}/>
         }}/>
 
         <Route exact path="/create_account" render={() => {

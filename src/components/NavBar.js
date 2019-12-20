@@ -20,9 +20,6 @@ class NavBar extends React.Component {
                 <Link to='/parks' class='parkName'>
                 <h1 className='logotext'>ParksPal<img src='http://cdn.onlinewebfonts.com/svg/img_498917.png' className='logo'></img></h1>
                 </Link>
-                <Link to='/my_account'>
-                <button>My Account</button>
-                </Link>
                  {button}
                  <input type='text' placeholder='Search by Name or State' value={this.props.searchTerm} onChange={this.props.search}/>
                  <Link to='/welcome'>
