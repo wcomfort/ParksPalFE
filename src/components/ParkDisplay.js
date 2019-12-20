@@ -76,23 +76,29 @@ class ParkDisplay extends React.Component {
             "Content-Type": "application/json",
             Accept: "application/json"
           },
-          body: JSON.stringify({content: content ,park_id: parkId, user_id: userId})
+          body: JSON.stringify({comment: {content: content ,park_id: parkId, user_id: userId}})
         })
+        .then(res => res.json())
+        .then(com => {
         this.setState({
+            comments: [...this.state.comments, com],
             comment: ""
         })
-        this.getComments()
+    })
+    }
+
+    renderComment = (state) => {
+        let parkId = state.park.id
+        let parkCom = state.comments.filter(comment => comment.park_id === parkId)
+        return parkCom.map(com => 
+            // console.log(com.user.username)
+            <div>
+                <p>{com.content} - {com.user.username}</p>
+            </div>
+            )
     }
 
    render(){
-
-        let parkId = this.state.park.id
-        let parkCom = this.state.comments.filter(comment => comment.park_id === parkId)
-        let comment = parkCom.map(comment => 
-            <div>
-                <p>{comment.content} - {comment.user.username}</p>
-            </div>
-            )
 
         let food
         if (this.state.loading === false && this.state.businesses.length === 0){
@@ -129,7 +135,7 @@ class ParkDisplay extends React.Component {
                     <input type='text' placeholder='Enter Comment' onChange={this.writeComment} value={this.state.comment} required></input>
                     <input type='submit' value='Add Comment'></input>
                 </form>
-                {comment}
+                {this.renderComment(this.state)}
             </div>
         </div>
     )

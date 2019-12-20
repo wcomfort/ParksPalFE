@@ -11,9 +11,12 @@ class ParkCard extends React.Component{
     }
 
     componentDidMount(){
+      console.log(this.props.user)
+      if (this.props.user) {
         this.setState({
             userFavorites: this.props.user.favorites
         })
+      }
     }
 
     addFavorite = (event) => {
@@ -25,7 +28,7 @@ class ParkCard extends React.Component{
             "Content-Type": "application/json",
             Accept: "application/json"
           },
-          body: JSON.stringify({user_id: userId, park_id: parkId})
+          body: JSON.stringify({favorite: {user_id: userId, park_id: parkId}})
         })
         .then(res => res.json())
         .then(res => {
@@ -57,17 +60,20 @@ class ParkCard extends React.Component{
             })
     }
 
-    button = (state) => {
-        let favIds = state.userFavorites.map(fav => fav.park_id)
-        let parkId = this.props.park.id
-        let button 
-        if (favIds.includes(parkId))
-        return button = <button onClick={this.deleteFavorite}>Delete Favorite</button>
-        else
-        return button = <button onClick={this.addFavorite}>Favorite</button>
+    button = () => {
+          let favIds = this.state.userFavorites.map(fav => fav.park_id)
+          let parkId = this.props.park.id
+          if (favIds.includes(parkId)) 
+            return <button onClick={this.deleteFavorite}>Delete Favorite</button>
+          else
+            return <button onClick={this.addFavorite}>Favorite</button>
+  
     }
+    
 
     render(){
+
+  
         
         return (
             <div class='card' onClick={this.props.display} id={this.props.park.id}>
@@ -75,7 +81,7 @@ class ParkCard extends React.Component{
             <img class='img' src={this.props.park.image}></img>
             </Link>
             <h2>{this.props.park.name}</h2>
-            {/* {this.button(this.state)} */}
+            {this.button()}
             </div>  
     )
     }    

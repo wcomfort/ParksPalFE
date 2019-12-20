@@ -18,7 +18,7 @@ class App extends React.Component {
       name: "",
       username: "",
       password: "",
-      user: {}
+      user: null
     }
   }
 
