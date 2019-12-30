@@ -143,6 +143,8 @@ class App extends React.Component {
     })
   }
 
+
+
   render(){
 
     return (
@@ -174,7 +176,7 @@ class App extends React.Component {
         }}/>
 
         <Route exact path="/park/:id" render={(props) => {  
-          return <ParkDisplay user={this.state.user} {...props}/>
+          return <ParkDisplay user={this.state.user} {...props} businessSearch={this.businessSearch}/>
         }}/>
 
         </Switch> 

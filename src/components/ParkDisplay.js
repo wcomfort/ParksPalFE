@@ -1,6 +1,8 @@
 import React from 'react'
 import NavBar from './NavBar'
-import { render } from '@testing-library/react'
+import BDropdown from './Dropdown'
+
+
 
 const tableStyle={
     width: '70vw',
@@ -15,6 +17,7 @@ class ParkDisplay extends React.Component {
         this.state={
             loading: true,
             businesses: [],
+            business: "Restaurants",
             park: false,
             comments: [],
             comment: ""
@@ -38,7 +41,8 @@ class ParkDisplay extends React.Component {
     getBusiness = () => {
         let park = { park: 
             { lat: this.state.park.lat, 
-            long: this.state.park.long
+            long: this.state.park.long,
+            business: this.state.business.toLowerCase()
             }   
         }
         fetch('http://localhost:3000/park/business', {
@@ -103,6 +107,13 @@ class ParkDisplay extends React.Component {
             )
     }
 
+    businessSearch = (event) => {
+        console.log(event.currentTarget.id)
+        this.setState({
+            business: event.currentTarget.id
+        }, () => this.getBusiness())
+      }
+
    render(){
 
         let food
@@ -145,10 +156,10 @@ class ParkDisplay extends React.Component {
             <div className='display'>
                 <a href={this.state.park.url} target="_blank" className='link'><h1>{this.state.park.name}</h1></a>
                 <h3>{this.state.park.state}</h3>
-                <p className='description'>{this.state.park.description}</p>
-                <div>
-                <h2>Best Restaurants:</h2>
-                <h4>Dropdown here</h4>
+                <p className='description'>{this.state.park.description}</p><br></br>
+                <div className='dropdown'>
+                <BDropdown businessSearch={this.businessSearch}/>
+                <h2>Best {this.state.business}:</h2>
                 </div>
                 {food}
                 <div  className='commcontainer'>

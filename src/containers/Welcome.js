@@ -8,7 +8,8 @@ let Welcome = () => {
             <div>
             <img src='http://cdn.onlinewebfonts.com/svg/img_498917.png' className='welcomelogo'></img><br></br>
             </div>
-            <div>
+            <div className='commcontainer'>
+                <p>ParksPal is dedicated to bringing you the best businesses near our National Parks! Please remember to practice <a className='link' target='blank' href='https://lnt.org/why/7-principles/'>Leave No Trace Ethics!</a></p>
             <Link to='/login'>
                 <button className='ui button'>Login</button>
             </Link>
