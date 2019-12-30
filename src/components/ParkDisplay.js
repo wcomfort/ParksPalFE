@@ -108,7 +108,7 @@ class ParkDisplay extends React.Component {
     }
 
     businessSearch = (event) => {
-        console.log(event.currentTarget.id)
+        console.log(event.currentTarget)
         this.setState({
             business: event.currentTarget.id
         }, () => this.getBusiness())
