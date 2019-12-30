@@ -1,6 +1,5 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import { tsPropertySignature } from '@babel/types'
 
 class NavBar extends React.Component {
 
@@ -16,16 +15,22 @@ class NavBar extends React.Component {
         button = <button onClick={this.props.parks} className='ui button'>All Parks</button>
 
         return (
-            <div>
-                <Link to='/parks' className='link'>
-                <h1 className='logotext'>ParksPal<img src='http://cdn.onlinewebfonts.com/svg/img_498917.png' className='logo'></img></h1>
-                </Link>
-                <div>
-                {button}
-                 <input type='text' placeholder='Search by Name or State' value={this.props.searchTerm} onChange={this.props.search} className='ui category search'/>
-                 <Link to='/welcome'>
-                 <button onClick={this.props.logout} className='ui button'>Logout</button>
-                 </Link>
+            <div className='navbar'>
+                <div className='navBtnLogo'>
+                    <Link to='/parks' className='link'>
+                    <h1 className='logotext'>ParksPal<img src='http://cdn.onlinewebfonts.com/svg/img_498917.png' className='logo'></img></h1>
+                    </Link>
+                </div>
+                <div className="navBtn">
+                    {button}
+                </div>
+                <div className="navBtn ui search">
+                    <input type='text' placeholder='Search by Name or State' value={this.props.searchTerm} onChange={this.props.search} className='prompt searchBar'/>
+                </div>
+                <div className="navBtn">
+                    <Link to='/welcome'>
+                    <button onClick={this.props.logout} className='ui button'>Logout</button>
+                    </Link>
                 </div>
             </div> 
         )

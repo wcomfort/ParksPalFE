@@ -119,7 +119,7 @@ class ParkDisplay extends React.Component {
         let food
         if (this.state.loading === false && this.state.businesses.length === 0){
             food = <div>
-                    <h2>Uh-Oh, You're Really Out There! Better Pack Some of These:</h2>
+                    <h2>Uh-Oh, You're Really Out There! Better Prepare and Pack Some of These:</h2>
                     <a href="https://www.mountainhouse.com/m/category/entrees.html" target="_blank" className='link'><h3>Mountain House Meals</h3></a><br></br>
                     <iframe src="https://giphy.com/embed/xT0xewLy70uaFY3Vte" width="480" height="247" frameBorder="0" class='gif' allowFullScreen></iframe>
                     </div>
@@ -163,9 +163,9 @@ class ParkDisplay extends React.Component {
                 </div>
                 {food}
                 <div  className='commcontainer'>
-                <h4>Comments:</h4>
-                <form onSubmit={this.createComment}>
-                    <input type='text' placeholder='Enter Comment' onChange={this.writeComment} value={this.state.comment} required className='ui category search'></input>
+                <h2>Comments:</h2>
+                <form onSubmit={this.createComment} className="ui search">
+                    <input type='text' placeholder='Enter Comment' onChange={this.writeComment} value={this.state.comment} required className='prompt commentbar'></input>
                     <input type='submit' value='Add Comment' className='ui button'></input>
                 </form>
                 {this.renderComment(this.state)}

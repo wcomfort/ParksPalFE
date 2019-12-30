@@ -62,6 +62,33 @@
   background-color: #a2dbb1;
 }
 
+.navbar {
+ display: flex;
+ justify-content: left;
+ align-items: center;
+ height: 7vw;
+}
+
+.searchBar {
+  width: 13vw;
+}
+
+.navBtnLogo {
+  display: inline-block;
+  padding-left: 1vw;
+  padding-right: 42vw;
+  padding-top: 2vw;
+  padding-bottom: 2vw;
+}
+
+.navBtn {
+  display: inline-block;
+  padding-left: 1vw;
+  padding-right: 1vw;
+  padding-top: 2vw;
+  padding-bottom: 2vw;
+}
+
 .commcontainer {
   width: 70vw;
   background-color: honeydew;
@@ -71,6 +98,10 @@
 
 .comment {
   font-size: 14pt;
+}
+
+.commentbar {
+  padding-right: 1vw;
 }
 
 .card {
