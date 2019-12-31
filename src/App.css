@@ -1,13 +1,26 @@
 .App {
   background-image: url("background.jpeg");
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.5);
   background-blend-mode: lighten;
   height: 100%;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   text-align: center;
-  color: white;
+  color: #7C4326;
+  font-weight: bolder;
+}
+
+.welcomebackground {
+  background-image: url("background.jpeg");
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+  color: #7C4326;
+  font-weight: bold;
+  font-size: 10pt;
 }
 
 .App-logo {
@@ -52,6 +65,7 @@
   text-align: left;
   font-size: 48pt;
   font-family: 'Roboto Mono', monospace;
+  color: black;
 }
 
 .welcomelogo {
@@ -85,6 +99,7 @@
   width: 20px;
   height:40px;
 }
+
 .img {
   height: 475px;
   width: 600px;
@@ -94,8 +109,18 @@
   text-align: center;
 }
 
+#tablehead{
+  background-color:  #476A00;
+  color: white;
+}
+
+#tablebody{
+  background-color:  #A2C423;
+  color: white;
+}
+
 .navbar {
- background-color: #1d6b31;
+ background-color:#476A00;
  display: flex;
  justify-content: left;
  align-items: center;
@@ -120,6 +145,11 @@
   padding-right: 1vw;
   padding-top: 2vw;
   padding-bottom: 2vw;
+}
+
+#button {
+  background-color: #7C4326;
+  color: white;
 }
 
 .commcontainer {
@@ -150,7 +180,7 @@
 }
 
 .link {
-  color: black;
+  color:  #7C4326;
   text-decoration: none;
 }
 

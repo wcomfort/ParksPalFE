@@ -3,7 +3,7 @@ import React from 'react';
 let Login = (props) => {
 
     return (
-        <div>
+        <div className='welcomebackground'>
                <img src='http://cdn.onlinewebfonts.com/svg/img_498917.png' className='welcomelogo'></img><br></br>
              <div className='welcomecontainer'>
             <div>
@@ -11,7 +11,7 @@ let Login = (props) => {
                 <form onSubmit={props.login} className='ui form'>
                 <input type='text' name='username' placeholder='Username' value={props.username} onChange={props.collect} required></input><br></br>
                 <input type='password' name='password' placeholder='Password' value={props.password} onChange={props.collect} required></input><br></br>
-                <input type='submit' value='Login' className='ui button'></input>
+                <input type='submit' value='Login' className='ui button' id='button'></input>
                 </form>
             </div>
             </div>

@@ -73,7 +73,8 @@ class App extends React.Component {
     })
     .then(res => res.json())
       .then(userObj => {
-        if(userObj){
+        console.log(userObj)
+        if(userObj.id){
           localStorage.setItem('user', userObj.id)
           this.setState({
             user: userObj,

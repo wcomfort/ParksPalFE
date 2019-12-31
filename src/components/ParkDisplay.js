@@ -120,7 +120,7 @@ class ParkDisplay extends React.Component {
         if (this.state.loading === false && this.state.businesses.length === 0){
             food = <div>
                     <h2>Uh-Oh, You're Really Out There! Better Prepare and Pack Some of These:</h2>
-                    <a href="https://www.mountainhouse.com/m/category/entrees.html" target="_blank" className='welcomelink'><h3>Mountain House Meals</h3></a><br></br>
+                    <a href="https://www.mountainhouse.com/m/category/entrees.html" target="_blank" className='link'><h3>Mountain House Meals</h3></a><br></br>
                     <iframe src="https://giphy.com/embed/xT0xewLy70uaFY3Vte" width="480" height="247" frameBorder="0" class='gif' allowFullScreen></iframe>
                     </div>
                    
@@ -128,18 +128,18 @@ class ParkDisplay extends React.Component {
             food =
             <table style={tableStyle} class="ui celled table">
             <thead>
-            <tr><th>Name</th>
-            <th>Address</th>
-            <th>Phone</th>
-            <th>Rating</th>
+            <tr><th id="tablehead">Name</th>
+            <th id="tablehead">Address</th>
+            <th id="tablehead">Phone</th>
+            <th id="tablehead">Rating</th>
             </tr></thead>
             <tbody>
             {this.state.businesses.map(bus => 
             <tr>
-                <td data-label="Name"> <a href={bus.url} target="_blank" className='link'>{bus.name}</a></td>
-                <td data-label="Address"><p>{bus.location.address1} {bus.location.city}, {bus.location.state}</p></td>
-                <td data-label="Phone">{bus.display_phone}</td>
-                <td data-label='Rating'>{bus.rating}</td>
+                <td data-label="Name" id="tablebody"> <a href={bus.url} target="_blank" className='welcomelink' >{bus.name}</a></td>
+                <td data-label="Address" id="tablebody"><p>{bus.location.address1} {bus.location.city}, {bus.location.state}</p></td>
+                <td data-label="Phone" id="tablebody">{bus.display_phone}</td>
+                <td data-label='Rating' id="tablebody">{bus.rating}</td>
             </tr>
             ) }
             </tbody>
@@ -154,7 +154,7 @@ class ParkDisplay extends React.Component {
                 <NavBar/>
             </div>
             <div className='display'>
-                <a href={this.state.park.url} target="_blank" className='welcomelink'><h1>{this.state.park.name}</h1></a>
+                <a href={this.state.park.url} target="_blank" className='link'><h1>{this.state.park.name}</h1></a>
                 <h3>{this.state.park.state}</h3>
                 <p className='description'>{this.state.park.description}</p><br></br>
                 <div className='dropdown'>

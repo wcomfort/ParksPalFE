@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 
 let Create = (props) => {
     return (
-        <div>
+        <div className='welcomebackground'>
               <img src='http://cdn.onlinewebfonts.com/svg/img_498917.png' className='welcomelogo'></img><br></br>
             <div className='welcomecontainer'>
             <div>
@@ -12,7 +12,7 @@ let Create = (props) => {
                 <input type='text' name='name' placeholder='Name' onChange={props.collect} required></input><br></br>
                 <input type='text' name='username' placeholder='Username' onChange={props.collect} required></input><br></br>
                 <input type='password' name='password' placeholder='Password' onChange={props.collect} required></input><br></br>
-                <input type='submit' value='Create Account' className='ui button'></input>
+                <input type='submit' value='Create Account' className='ui button' id='button'></input>
                 </form>
             </div>
         </div>

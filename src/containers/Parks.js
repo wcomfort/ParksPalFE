@@ -2,6 +2,7 @@ import React from 'react'
 import ParkCard from '../components/ParkCard'
 
 class Parks extends React.Component {
+
     render(){
         return (
             <div class="container">
