@@ -99,7 +99,7 @@ class App extends React.Component {
         "Content-Type": "application/json",
         Accept: "application/json"
       },
-      body: JSON.stringify({name: name, username: username, password: password})
+      body: JSON.stringify({user:{name: name, username: username, password: password}})
     })
     .then(res => res.json())
       .then(userObj => {
