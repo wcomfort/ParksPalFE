@@ -1,6 +1,13 @@
 .App {
-  background-color: #1d6b31;
+  background-image: url("background.jpeg");
+  background-color: rgba(255, 255, 255, 0.4);
+  background-blend-mode: lighten;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   text-align: center;
+  color: white;
 }
 
 .App-logo {
@@ -29,8 +36,12 @@
   color: #61dafb;
 }
 
+.form {
+  width: 20vw;
+  left: 25vw;
+}
+
 .container {
-  background-color: #a2dbb1;
   min-width: 100%;
   min-height: 600px;
   display: flex;
@@ -44,8 +55,30 @@
 }
 
 .welcomelogo {
-  width: 200px;
-  height:400px;
+  width: 20vw;
+  height: 41vw;
+  position: absolute;
+  padding-top: 7vw;
+  left: 40vw;
+  bottom: 7vw;
+}
+
+.welcomecontainer {
+  width: 70vw;
+  font-weight: 600;
+  font-size: larger;
+  color: white;
+  display: inline-block;
+  margin-bottom: 20vw;
+  margin-top: 20vw;
+  position: relative;
+  padding-bottom: 2vw;
+  padding-top: 2vw;
+}
+
+.welcomelink {
+  color: white;
+  text-decoration: none;
 }
 
 .logo {
@@ -59,14 +92,14 @@
 
 .display {
   text-align: center;
-  background-color: #a2dbb1;
 }
 
 .navbar {
+ background-color: #1d6b31;
  display: flex;
  justify-content: left;
  align-items: center;
- height: 7vw;
+ height: 5vw;
 }
 
 .searchBar {
@@ -91,9 +124,12 @@
 
 .commcontainer {
   width: 70vw;
-  background-color: honeydew;
   display: inline-block;
-  margin-bottom: 20px;
+  padding-bottom: 2vw;
+}
+
+.commentform {
+  padding-bottom: 2vw;
 }
 
 .comment {
@@ -108,6 +144,7 @@
   min-width: 600px;
   min-height: 500px;
   margin: 20px;
+  margin-top: 3vw;
   border-bottom-style: none;
   text-decoration: none;
 }
@@ -121,7 +158,6 @@
   display: inline-block;
   width: 70vw;
   font-size: 14pt;
-  background-color: honeydew;
 }
 
 .gif {
