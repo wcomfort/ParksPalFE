@@ -6,6 +6,7 @@ import Welcome from './Welcome.js'
 import Login from '../components/Login'
 import Create from '../components/Create'
 import ParkDisplay from '../components/ParkDisplay';
+import Swal from 'sweetalert2'
 
 class App extends React.Component {
  
@@ -82,7 +83,12 @@ class App extends React.Component {
             password: ""
           })
         }else{
-         alert('Please Enter a Valid Login')
+          Swal.fire({
+            title: 'Error!',
+            text: 'Please Enter a Valid Login',
+            icon: 'error',
+            confirmButtonText: 'Cool'
+          })
           }
         })
       }

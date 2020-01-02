@@ -1,5 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import Swal from 'sweetalert2'
 
 class ParkCard extends React.Component{
 
@@ -32,14 +33,15 @@ class ParkCard extends React.Component{
         })
         .then(res => res.json())
         .then(res => {
-          if (res.id === null){
-            alert("Already a Favorite!")
-          }else{
-            alert('Added to Favorites!')
+            Swal.fire({
+              title: 'Success!',
+              text: 'Added to Favorites',
+              icon: 'success',
+              confirmButtonText: 'Cool'
+            })
             this.setState({
                 userFavorites: [...this.state.userFavorites, res]
             })
-          }
         })
       }
 
@@ -56,7 +58,12 @@ class ParkCard extends React.Component{
                 this.setState({
                 userFavorites: update
                 })
-                alert("Favorite Deleted!")
+                Swal.fire({
+                  title: 'Success!',
+                  text: 'Deleted Favorite',
+                  icon: 'error',
+                  confirmButtonText: 'Cool'
+                })
             })
     }
 
