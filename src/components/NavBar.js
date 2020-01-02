@@ -10,7 +10,7 @@ class NavBar extends React.Component {
     render(){
         let button 
         if (this.props.faves === false)
-        button =  <button onClick={this.props.filterFaves} className='ui button'  id='button'>My Favorites</button>
+        button =  <button onClick={this.props.filterFaves} className='ui button'  id='button'>Favorites</button>
         else
         button = <button onClick={this.props.parks} className='ui button'  id='button'>All Parks</button>
 

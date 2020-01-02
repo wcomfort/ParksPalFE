@@ -115,7 +115,14 @@ class App extends React.Component {
           this.setState({
             user: userObj
           })
-        }
+        }else{
+          Swal.fire({
+            title: 'Error!',
+            text: 'Username Already Taken',
+            icon: 'error',
+            confirmButtonText: 'Cool'
+          })
+          }
       })
   }
 

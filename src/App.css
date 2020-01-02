@@ -9,18 +9,51 @@
   text-align: center;
   color: #7C4326;
   font-weight: bolder;
+  font-family: 'Roboto Mono', monospace;
 }
 
 .welcomebackground {
-  background-image: url("background.jpeg");
+  background-image: url("stars.jpeg");
   height: 100%;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   text-align: center;
-  color: #7C4326;
   font-weight: bold;
-  font-size: 10pt;
+  font-size: 12pt;
+}
+
+.loginbackground {
+  background-image: url("login.jpeg");
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+  font-weight: bold;
+  font-size: 12pt;
+}
+
+.createbackground {
+  background-image: url("create.jpeg");
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+  font-weight: bold;
+  font-size: 12pt;
+}
+
+.displaybackground {
+  background-image: url("display.jpeg");
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+  font-weight: bold;
+  font-size: 12pt;
 }
 
 .App-logo {
@@ -74,7 +107,7 @@
   position: absolute;
   padding-top: 7vw;
   left: 40vw;
-  bottom: 7vw;
+  bottom: 4vw;
 }
 
 .welcomecontainer {
@@ -95,6 +128,24 @@
   text-decoration: none;
 }
 
+ h1 {
+  font-weight: bold;
+  font-size: 28pt;
+  font-family: 'Roboto Mono', monospace;
+}
+
+h2 {
+  font-weight: bold;
+  font-size: 20pt;
+  font-family: 'Roboto Mono', monospace;
+}
+
+h3 {
+  font-weight: bold;
+  font-size: 20pt;
+  font-family: 'Roboto Mono', monospace;
+}
+
 .logo {
   width: 20px;
   height:40px;
@@ -107,6 +158,11 @@
 
 .display {
   text-align: center;
+  color: white;
+}
+
+#input {
+  margin-bottom: .5vw;
 }
 
 #tablehead{
@@ -150,6 +206,7 @@
 #button {
   background-color: #7C4326;
   color: white;
+  font-family: 'Roboto Mono', monospace;
 }
 
 .commcontainer {

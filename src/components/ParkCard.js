@@ -87,7 +87,7 @@ class ParkCard extends React.Component{
             <Link to={`/park/${this.props.park.id}`} className="parkName">
             <img class='img' src={this.props.park.image}></img>
             </Link>
-            <h2>{this.props.park.name}</h2>
+            <h2 id='text'>{this.props.park.name}</h2>
             {this.button()}
             </div>  
     )
